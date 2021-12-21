@@ -5,6 +5,7 @@ import cors  from 'cors';
 import { appStart } from './meddelwares/appStart.js';
 import { patientRoute } from './routes/patient.js';
 import { sessionsRoute } from './routes/session.js';
+import { connectDB } from "./config/connectToDB.js";
 
 // extra security packages
 import helmet from 'helmet';
@@ -43,5 +44,15 @@ app.get('/', (req, res)=>{
 app.use('/api/v1/patient', patientRoute);
 app.use('/api/v1/session', sessionsRoute);
 
+try {
+  // db connect 
  
-appStart(app, port)
+
+app.listen(400 ||  process.env.port, async()=>{
+  
+  await connectDB(process.env.MONGODB_URI);
+  console.log(`your server is up on ${port}`)})
+} catch (error) {
+console.log(error.message);
+}
+// appStart(app, port)
