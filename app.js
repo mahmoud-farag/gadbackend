@@ -15,9 +15,9 @@ import  rateLimit from 'express-rate-limit';
 const app = express(),
       port = process.env.port || 4000;
 
-      if (process.env.NODE_ENV !== "production") {
-        dotEnv.config();
-      }
+      // if (process.env.NODE_ENV !== "production") {
+      //   dotEnv.config();
+      // }
 // app security modules 
 app.set('trust proxy', 1);
 app.use(
