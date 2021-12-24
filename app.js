@@ -10,11 +10,10 @@ import { sessionsRoute } from './routes/session.js';
 import helmet from 'helmet';
 import  xss from 'xss-clean';
 import  rateLimit from 'express-rate-limit';
-import { connectDB } from './config/connectToDB.js';
 
 
 const app = express(),
-      port = process.env.port || 4000;
+      port = process.env.PORT || 4000;
 
       // if (process.env.NODE_ENV !== "production") {
       //   dotEnv.config();
@@ -44,18 +43,18 @@ app.get('/', (req, res)=>{
 app.use('/api/v1/patient', patientRoute);
 app.use('/api/v1/session', sessionsRoute);
 
-app.listen(port,async (error)=>{
+// app.listen(port,async (error)=>{
   
-  try {
-    if(error)
-     throw new Error(error.message)
-    await connectDB(process.env.MONGODB_URI);
-    console.log(`your server is up on ${port}`)
-  } catch (error) {
-    console.log(error.message)
-  }  
+//   try {
+//     if(error)
+//      throw new Error(error.message)
+//     await connectDB(process.env.MONGODB_URI);
+//     console.log(`your server is up on ${port}`)
+//   } catch (error) {
+//     console.log(error.message)
+//   }  
  
-})
+// })
 
 
-// appStart(app, port)
+appStart(app, port)
