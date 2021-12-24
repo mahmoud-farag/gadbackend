@@ -42,19 +42,10 @@ app.get('/', (req, res)=>{
 
 app.use('/api/v1/patient', patientRoute);
 app.use('/api/v1/session', sessionsRoute);
-
-// app.listen(port,async (error)=>{
+app.use(( req,res)=>{
   
-//   try {
-//     if(error)
-//      throw new Error(error.message)
-//     await connectDB(process.env.MONGODB_URI);
-//     console.log(`your server is up on ${port}`)
-//   } catch (error) {
-//     console.log(error.message)
-//   }  
- 
-// })
-
+  res.status(404).send('<h1>this route not exist</h1>')
+  
+})
 
 appStart(app, port)
